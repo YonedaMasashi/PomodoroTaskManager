@@ -87,7 +87,6 @@
     <Compile Include="ViewModel\EndPomodoroVM.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase .cs" />
     <Compile Include="ViewModel\SettingsVM.cs" />
-    <Compile Include="View\Behiviors\ApplicationCommands.cs" />
     <Compile Include="View\ModeToEndPomodoroMsg.cs" />
     <Compile Include="View\EndPomodoroWindow.xaml.cs">
       <DependentUpon>EndPomodoroWindow.xaml</DependentUpon>

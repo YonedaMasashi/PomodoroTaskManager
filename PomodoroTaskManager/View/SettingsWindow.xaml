@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PomodoroTaskManager.View"
         xmlns:vm="clr-namespace:PomodoroTaskManager.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         Icon="../TaskTray.ico"
         mc:Ignorable="d"
         Title="Settings..." Height="150" Width="190"
@@ -38,8 +40,14 @@
                          Text="{Binding Path=LongBreakInterval}"
                          Margin="0,0,10,0"/>
 
-                <Button Content="Save" Grid.Row="4" Grid.Column="0" Width="50" Height="20" Grid.ColumnSpan="2"
-                        Click="Button_Click"/>
+                <Button Content="Save" Grid.Row="4" Grid.Column="0" Width="50" Height="20" Grid.ColumnSpan="2" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction MethodName="Close" 
+                                                 TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </Grid>
         </StackPanel>
     </Grid>

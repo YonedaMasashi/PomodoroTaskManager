@@ -26,9 +26,5 @@ namespace PomodoroTaskManager.View
             IntervalData.DataContext = settingVM;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }
