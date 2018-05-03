@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PomodoroTaskManager.View"
+        xmlns:vm="clr-namespace:PomodoroTaskManager.ViewModel"
+        Icon="../TaskTray.ico"
         mc:Ignorable="d"
-        Title="Settings..." Height="150" Width="300"
+        Title="Settings..." Height="150" Width="190"
         ResizeMode="NoResize" >
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Grid>
+            <Grid x:Name="IntervalData">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -18,19 +20,26 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Label Content="Pomodoro Interval" Grid.Row="0" Grid.Column="0" />
-                <TextBox x:Name="TxtPomodoroInterval" Grid.Row="0" Grid.Column="1" />
+                <TextBox x:Name="TxtPomodoroInterval" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Height="20" Width="30"
+                         Text="{Binding Path=PomodoroInterval}"
+                         Margin="0,0,10,0"/>
 
                 <Label Content="Break Interval" Grid.Row="1" Grid.Column="0" />
-                <TextBox x:Name="TxtBreakInterval" Grid.Row="1" Grid.Column="1" />
+                <TextBox x:Name="TxtBreakInterval" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Height="20" Width="30"
+                         Text="{Binding Path=BreakInterval}"
+                         Margin="0,0,10,0"/>
  
                 <Label Content="Long Break Interval" Grid.Row="2" Grid.Column="0" />
-                <TextBox x:Name="TxtLongBreakInterval" Grid.Row="2" Grid.Column="1" />
+                <TextBox x:Name="TxtLongBreakInterval" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Height="20" Width="30"
+                         Text="{Binding Path=LongBreakInterval}"
+                         Margin="0,0,10,0"/>
 
-                <Button Content="Save" Grid.Row="4" Grid.Column="1" Width="50" Height="20" Click="Button_Click"/>
+                <Button Content="Save" Grid.Row="4" Grid.Column="0" Width="50" Height="20" Grid.ColumnSpan="2"
+                        Click="Button_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

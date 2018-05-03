@@ -16,19 +16,16 @@ using System.Windows.Shapes;
 namespace PomodoroTaskManager.View
 {
     /// <summary>
-    /// SettingsWindow.xaml の相互作用ロジック
+    /// EndPomodoroWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class EndPomodoroWindow : Window
     {
-        public SettingsWindow(SettingsVM settingVM)
+
+        public EndPomodoroWindow(EndPomodoroVM endPomodoroVM)
         {
             InitializeComponent();
-            IntervalData.DataContext = settingVM;
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            PomodoroEndMessage.DataContext = endPomodoroVM;
         }
     }
 }

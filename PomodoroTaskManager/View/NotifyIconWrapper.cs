@@ -1,4 +1,6 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
+using PomodoroTaskManager.Model.Timer;
+using PomodoroTaskManager.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,18 +18,22 @@ namespace PomodoroTaskManager.View
     /// </summary>
     public partial class NotifyIconWrapper : Component
     {
-        DispatcherTimer dispatcherTimer;    // タイマーオブジェクト
-        DateTime StartTime;                 // カウント開始時刻
-        TimeSpan nowtimespan;               // Startボタンが押されてから現在までの経過時間
-        TimeSpan oldtimespan;               // 一時停止ボタンが押されるまでに経過した時間の蓄積
+        private Em_Mode _emMode = Em_Mode.Stop;
+        public Em_Mode EmMode {
+            get { return _emMode; }
+            set {
+                _emMode = value;
+                _endPomodoroVM.emMode = _emMode;
+            }
+        }
 
-        int pomodoroInterval = 25;
-        int breakInterval = 5;
-        int longBreakInterval = 15;
+        // Model
+        PomodoroTimer _pomodoroTime;
+        TimeInterval _timeInterval;
 
-        Em_Mode emMode = Em_Mode.Stop;
-
-        SettingsWindow settingWindow;
+        // View Model
+        SettingsVM _settingsVM;
+        EndPomodoroVM _endPomodoroVM;
 
 
         /// <summary>
@@ -38,8 +44,14 @@ namespace PomodoroTaskManager.View
             // コンポーネントの初期化
             InitializeComponent();
 
+            // タイマーのインスタンスを生成
+            _timeInterval = new TimeInterval();
+            _pomodoroTime = new PomodoroTimer(_timeInterval);
+            _pomodoroTime.PomodoroTimerTickEventHandler += new PomodoroTimer.TimerTickEventHandler(CallBackEventProgress);
+
             // Window の初期化
-            settingWindow = new SettingsWindow();
+            _settingsVM = new SettingsVM(_timeInterval);
+            _endPomodoroVM = new EndPomodoroVM();
 
             // コンテキストメニューのイベントを設定
             this.toolStripMenuItem_Exit.Click += this.toolStripMenuItem_Exit_Click;
@@ -51,10 +63,6 @@ namespace PomodoroTaskManager.View
             // TextBox の初期化
             toolStripMenuItem_TimeText.Text = "00:00";
 
-            // タイマーのインスタンスを生成
-            dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 200); // 200msecごとに Tick を発火
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick); // Tick が発火した時に dispatcherTimer_Tick を起動
         }
 
         /// <summary>
@@ -68,46 +76,36 @@ namespace PomodoroTaskManager.View
             InitializeComponent();
         }
 
-        // タイマー Tick処理
-        void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            nowtimespan = DateTime.Now.Subtract(StartTime);
-            toolStripMenuItem_TimeText.Text = oldtimespan.Add(nowtimespan).ToString(@"mm\:ss");
+        /// <summary>
+        /// タイマーの Tick のコールバック
+        /// </summary>
+        /// <param name="e"></param>
+        private void CallBackEventProgress(TimerTickEventArgs e) {
+            if (e.TickKind == Em_TickKind.Normal) {
+                toolStripMenuItem_TimeText.Text = e.Time;
 
-            if (emMode == Em_Mode.Pomodoro)
-            {
-                if (TimeSpan.Compare(oldtimespan.Add(nowtimespan), new TimeSpan(0, 0, pomodoroInterval)) >= 0)
-                {
-                    MessageBox.Show("Pomodoro End");
-                    TimerStop();
-                    TimerReset();
+            } else {
+                if (_emMode == Em_Mode.Pomodoro) {
                     toolStripMenuItem_Start.Enabled = true;
                     System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyIconWrapper));
                     toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_TimeText.Image")));
-                }
-            }
-            else if (emMode == Em_Mode.Break)
-            {
-                if (TimeSpan.Compare(oldtimespan.Add(nowtimespan), new TimeSpan(0, 0, breakInterval)) >= 0)
-                {
-                    MessageBox.Show("Break End");
-                    TimerStop();
-                    TimerReset();
+                    EndPomodoroWindow endPomodoroWindow = new EndPomodoroWindow(_endPomodoroVM);
+                    endPomodoroWindow.ShowDialog();
+
+                } else if (_emMode == Em_Mode.Break) {
                     toolStripMenuItem_Break.Visible = true;
                     System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyIconWrapper));
                     toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_TimeText.Image")));
-                }
-            }
-            else if (emMode == Em_Mode.LongBreak)
-            {
-                if (TimeSpan.Compare(oldtimespan.Add(nowtimespan), new TimeSpan(0, 0, longBreakInterval)) >= 0)
-                {
-                    MessageBox.Show("Long Break End");
-                    TimerStop();
-                    TimerReset();
+                    EndPomodoroWindow endPomodoroWindow = new EndPomodoroWindow(_endPomodoroVM);
+                    endPomodoroWindow.ShowDialog();
+
+                } else if (_emMode == Em_Mode.LongBreak) {
                     toolStripMenuItem_LongBreak.Visible = true;
                     System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyIconWrapper));
                     toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_TimeText.Image")));
+                    EndPomodoroWindow endPomodoroWindow = new EndPomodoroWindow(_endPomodoroVM);
+                    endPomodoroWindow.ShowDialog();
+
                 }
             }
         }
@@ -128,29 +126,27 @@ namespace PomodoroTaskManager.View
         /// </summary>
         /// <param name="sender">呼び出し元オブジェクト</param>
         /// <param name="e">イベントデータ</param>
-        private void toolStripMenuItem_Start_Click(object sender, EventArgs e)
-        {
-            TimerReset();
-            TimerStart();
-            emMode = Em_Mode.Pomodoro;
+        private void toolStripMenuItem_Start_Click(object sender, EventArgs e) {
+            EmMode = Em_Mode.Pomodoro;
+            _pomodoroTime.ResetTimer();
+            _pomodoroTime.StartTimer(_emMode);
             toolStripMenuItem_Start.Visible = false;
             toolStripMenuItem_Break.Visible = true;
             toolStripMenuItem_LongBreak.Visible = true;
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyIconWrapper));
             toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_Start.Image")));
-        }
+        } 
 
         /// <summary>
         /// コンテキストメニュー "Break Pomodoro" を選択したとき呼ばれます。
         /// </summary>
         /// <param name="sender">呼び出し元オブジェクト</param>
         /// <param name="e">イベントデータ</param>
-        private void toolStripMenuItem_Break_Click(object sender, EventArgs e)
-        {
-            TimerReset();
-            TimerStart();
-            emMode = Em_Mode.Break;
+        private void toolStripMenuItem_Break_Click(object sender, EventArgs e) {
+            EmMode = Em_Mode.Break;
+            _pomodoroTime.ResetTimer();
+            _pomodoroTime.StartTimer(_emMode);
 
             toolStripMenuItem_Start.Visible = true;
             toolStripMenuItem_Break.Visible = false;
@@ -165,11 +161,10 @@ namespace PomodoroTaskManager.View
         /// </summary>
         /// <param name="sender">呼び出し元オブジェクト</param>
         /// <param name="e">イベントデータ</param>
-        private void toolStripMenuItem_LongBreak_Click(object sender, EventArgs e)
-        {
-            TimerReset();
-            TimerStart();
-            emMode = Em_Mode.LongBreak;
+        private void toolStripMenuItem_LongBreak_Click(object sender, EventArgs e) {
+            EmMode = Em_Mode.LongBreak;
+            _pomodoroTime.ResetTimer();
+            _pomodoroTime.StartTimer(_emMode);
 
             toolStripMenuItem_Start.Visible = true;
             toolStripMenuItem_Break.Visible = true;
@@ -186,35 +181,8 @@ namespace PomodoroTaskManager.View
         /// <param name="e">イベントデータ</param>
         private void toolStripMenuItem_Settings_Click(object sender, EventArgs e)
         {
-            settingWindow.TxtPomodoroInterval.Text = pomodoroInterval.ToString();
-            settingWindow.TxtBreakInterval.Text = breakInterval.ToString();
-            settingWindow.TxtLongBreakInterval.Text = longBreakInterval.ToString();
+            SettingsWindow settingWindow = new SettingsWindow(_settingsVM);
             settingWindow.ShowDialog();
-            pomodoroInterval = int.Parse(settingWindow.TxtPomodoroInterval.Text);
-            breakInterval = int.Parse(settingWindow.TxtBreakInterval.Text);
-            longBreakInterval = int.Parse(settingWindow.TxtLongBreakInterval.Text);
         }
-
-        // タイマー操作：開始
-        private void TimerStart()
-        {
-            StartTime = DateTime.Now;
-            dispatcherTimer.Start();
-        }
-
-        // タイマー操作：停止
-        private void TimerStop()
-        {
-            oldtimespan = oldtimespan.Add(nowtimespan);
-            dispatcherTimer.Stop();
-        }
-
-        // タイマー操作：リセット
-        private void TimerReset()
-        {
-            oldtimespan = new TimeSpan();
-            toolStripMenuItem_TimeText.Text = "00:00";
-        }
-
     }
 }

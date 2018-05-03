@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace PomodoroTaskManager.DataTypeDef.Enum
 {
-    enum Em_Mode { Stop, Pomodoro, Break, LongBreak, }
+    public enum Em_Mode { Stop, Pomodoro, Break, LongBreak, }
 }
