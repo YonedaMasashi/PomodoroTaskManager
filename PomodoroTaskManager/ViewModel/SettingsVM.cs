@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PomodoroTaskManager.ViewModel.Base;
 using PomodoroTaskManager.Model.Timer;
+using PomodoroTaskManager.ViewModel.Command;
 
 namespace PomodoroTaskManager.ViewModel {
     public class SettingsVM : ViewModelBase {
@@ -13,7 +14,12 @@ namespace PomodoroTaskManager.ViewModel {
 
         public SettingsVM(TimeInterval timeInterval) {
             _timeInterval = timeInterval;
+            PushedSettingSaveCommand = new SettingSaveCommand(_timeInterval);
         }
+
+        #region Command
+        public SettingSaveCommand PushedSettingSaveCommand { get; private set; }
+        #endregion
 
         public int PomodoroInterval {
             get { return _timeInterval.PomodoroInterval; }

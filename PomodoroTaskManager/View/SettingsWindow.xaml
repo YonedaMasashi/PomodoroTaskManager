@@ -43,6 +43,9 @@
                 <Button Content="Save" Grid.Row="4" Grid.Column="0" Width="50" Height="20" Grid.ColumnSpan="2" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
+                            <!-- コマンド実行 -->
+                            <i:InvokeCommandAction Command="{Binding PushedSettingSaveCommand}" />
+                            <!-- ウィンドウをクローズ -->
                             <ei:CallMethodAction MethodName="Close" 
                                                  TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
                         </i:EventTrigger>

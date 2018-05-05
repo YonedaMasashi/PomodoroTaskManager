@@ -46,6 +46,7 @@ namespace PomodoroTaskManager.View
 
             // タイマーのインスタンスを生成
             _timeInterval = new TimeInterval();
+            _timeInterval.LoadJson();
             _pomodoroTime = new PomodoroTimer(_timeInterval);
             _pomodoroTime.PomodoroTimerTickEventHandler += new PomodoroTimer.TimerTickEventHandler(CallBackEventProgress);
 
