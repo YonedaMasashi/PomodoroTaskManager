@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PomodoroTaskManager.View"
         xmlns:viewmodel="clr-namespace:PomodoroTaskManager.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Icon="../TaskTray.ico"
+        x:Name="EndPomoWindow"
         Title="End Pomodoro" Height="180" Width="300">
 
     <Window.Resources >
@@ -26,9 +29,47 @@
 
         <Grid Grid.Row="1" Grid.Column="0">
             <StackPanel Orientation="Horizontal" x:Name="ButtonPanel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                <Button x:Name="BtnStartPomodoro" Content="Start" Margin="0,0,0,0" Width="50" Height="30" />
-                <Button x:Name="BtnBreak" Content="Break" Margin="10,0,0,0" Width="50" Height="30"/>
-                <Button x:Name="BtnSetBreak" Content="SetBreak" Margin="10,0,0,0" Width="50" Height="30" />
+                <Button x:Name="BtnStartPomodoro" Content="Start" Margin="0,0,0,0" Width="50" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <!-- コマンド実行 -->
+                            <i:InvokeCommandAction Command="{Binding PushedPomodoroActionButtonCommand}"
+                                                   CommandParameter="StartPomodoro"/>
+                            <!-- Window の DialogResult を設定して、Window を閉じる -->
+                            <ei:ChangePropertyAction TargetObject="{Binding ElementName=EndPomoWindow}"
+                                                     PropertyName="DialogResult"
+                                                     Value="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button x:Name="BtnBreak" Content="Break" Margin="10,0,0,0" Width="50" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <!-- コマンド実行 -->
+                            <i:InvokeCommandAction Command="{Binding PushedPomodoroActionButtonCommand}"
+                                                   CommandParameter="Break"/>
+                            <!-- Window の DialogResult を設定して、Window を閉じる -->
+                            <ei:ChangePropertyAction TargetObject="{Binding ElementName=EndPomoWindow}"
+                                                     PropertyName="DialogResult"
+                                                     Value="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button x:Name="BtnLonBreak" Content="Long Break" Margin="10,0,0,0" Width="80" Height="30" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <!-- コマンド実行 -->
+                            <i:InvokeCommandAction Command="{Binding PushedPomodoroActionButtonCommand}"
+                                                   CommandParameter="LongBreak"/>
+                            <!-- Window の DialogResult を設定して、Window を閉じる -->
+                            <ei:ChangePropertyAction TargetObject="{Binding ElementName=EndPomoWindow}"
+                                                     PropertyName="DialogResult"
+                                                     Value="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

@@ -1,7 +1,10 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
+using PomodoroTaskManager.Model.Timer;
 using PomodoroTaskManager.ViewModel.Base;
+using PomodoroTaskManager.ViewModel.Command;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +26,30 @@ namespace PomodoroTaskManager.ViewModel {
             }
         }
 
+        private PomodoroTimer _pomodoroTimer;
+
         #endregion
 
         #region Command
-        public ICommand PushedStartPomodoroButtonCommand { get; private set; }
-        public ICommand PushedBreakButtonCommand { get; private set; }
-        public ICommand PushedSetBreakButtonCommand { get; private set; }
+        public PomodoroActionCommand PushedPomodoroActionButtonCommand { get; private set; }
         #endregion
 
-        public EndPomodoroVM() {
+        public EndPomodoroVM(PomodoroTimer pomodoroTimer) {
             _emMode = Em_Mode.Stop;
+            _pomodoroTimer = pomodoroTimer;
+            _pomodoroTimer.PropertyChanged += EmMode_PropertyChanged;
+            PushedPomodoroActionButtonCommand = new PomodoroActionCommand(_pomodoroTimer);
+        }
+
+        /// <summary>
+        /// Model の変更通知を受け取る
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EmMode_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+            if (e.PropertyName == "EmMode") {
+                emMode = _pomodoroTimer.EmMode;
+            }
         }
     }
 }

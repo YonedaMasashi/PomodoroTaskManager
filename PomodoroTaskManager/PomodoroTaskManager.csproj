@@ -84,6 +84,8 @@
     <Compile Include="DataTypeDef\Enum\Em_Mode.cs" />
     <Compile Include="Model\Timer\PomodoroTimer.cs" />
     <Compile Include="Model\Timer\TimeInterval.cs" />
+    <Compile Include="Model\Base\BindableBase.cs" />
+    <Compile Include="ViewModel\Command\PomodoroActionCommand.cs" />
     <Compile Include="ViewModel\EndPomodoroVM.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase .cs" />
     <Compile Include="ViewModel\SettingsVM.cs" />

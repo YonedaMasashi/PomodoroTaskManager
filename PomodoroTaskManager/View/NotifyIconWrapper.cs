@@ -51,7 +51,7 @@ namespace PomodoroTaskManager.View
 
             // Window の初期化
             _settingsVM = new SettingsVM(_timeInterval);
-            _endPomodoroVM = new EndPomodoroVM();
+            _endPomodoroVM = new EndPomodoroVM(_pomodoroTime);
 
             // コンテキストメニューのイベントを設定
             this.toolStripMenuItem_Exit.Click += this.toolStripMenuItem_Exit_Click;

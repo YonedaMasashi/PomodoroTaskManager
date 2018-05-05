@@ -1,4 +1,5 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
+using PomodoroTaskManager.Model.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,12 @@ using System.Windows.Threading;
 
 namespace PomodoroTaskManager.Model.Timer {
 
-    enum Em_TickKind {
+    public enum Em_TickKind {
         Normal,
         End
     }
     
-    class TimerTickEventArgs : EventArgs {
+    public class TimerTickEventArgs : EventArgs {
 
         private readonly string _Time;
         public string Time { get { return _Time; } }
@@ -27,7 +28,7 @@ namespace PomodoroTaskManager.Model.Timer {
         }
     }
 
-    class PomodoroTimer {
+    public class PomodoroTimer : BindableBase {
 
         DispatcherTimer dispatcherTimer;    // タイマーオブジェクト
         DateTime StartTime;                 // カウント開始時刻
@@ -37,6 +38,10 @@ namespace PomodoroTaskManager.Model.Timer {
         TimeInterval _timeInterval;
 
         Em_Mode _emMode = Em_Mode.Stop;
+        public Em_Mode EmMode {
+            get { return _emMode; }
+            set { SetProperty(ref _emMode, value); }
+        }
 
         #region Event Delegate
 
@@ -97,7 +102,7 @@ namespace PomodoroTaskManager.Model.Timer {
         /// タイマースタート
         /// </summary>
         public void StartTimer(Em_Mode emMode) {
-            _emMode = emMode;
+            EmMode = emMode;
             StartTime = DateTime.Now;
             dispatcherTimer.Start();
         }
