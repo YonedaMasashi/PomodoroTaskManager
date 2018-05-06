@@ -10,10 +10,16 @@
         mc:Ignorable="d"
         Icon="../TaskTray.ico"
         x:Name="EndPomoWindow"
+        Style="{DynamicResource window_normal}"
         Title="End Pomodoro" Height="180" Width="300">
 
-    <Window.Resources >
-        <local:ModeToEndPomodoroMsg x:Key="ModeToEndPomodoroMsg" />
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/Style/StyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:ModeToEndPomodoroMsg x:Key="ModeToEndPomodoroMsg" />
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid x:Name="PomodoroEndMessage" >
@@ -24,12 +30,12 @@
 
         <TextBlock x:Name="EndMessage" Grid.Row="0" Grid.Column="0" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="30"
+                   Style="{StaticResource txb_EndPopup}"
                    Text="{Binding Path=emMode, Converter={StaticResource ModeToEndPomodoroMsg}}" />
 
         <Grid Grid.Row="1" Grid.Column="0">
             <StackPanel Orientation="Horizontal" x:Name="ButtonPanel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-                <Button x:Name="BtnStartPomodoro" Content="Start" Margin="0,0,0,0" Width="50" Height="30" >
+                <Button x:Name="BtnStartPomodoro" Content="Start" Margin="0,0,0,0" Style="{StaticResource btn_normal}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <!-- コマンド実行 -->
@@ -43,7 +49,7 @@
                     </i:Interaction.Triggers>
                 </Button>
 
-                <Button x:Name="BtnBreak" Content="Break" Margin="10,0,0,0" Width="50" Height="30" >
+                <Button x:Name="BtnBreak" Content="Break" Margin="10,0,0,0" Style="{StaticResource btn_normal}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <!-- コマンド実行 -->
@@ -57,7 +63,7 @@
                     </i:Interaction.Triggers>
                 </Button>
 
-                <Button x:Name="BtnLonBreak" Content="Long Break" Margin="10,0,0,0" Width="80" Height="30" >
+                <Button x:Name="BtnLonBreak" Content="Long Break" Margin="10,0,0,0" Style="{StaticResource btn_normal}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <!-- コマンド実行 -->
