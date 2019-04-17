@@ -86,26 +86,26 @@
     <Compile Include="Model\Timer\PomodoroTimer.cs" />
     <Compile Include="Model\Timer\TimeInterval.cs" />
     <Compile Include="Model\Base\BindableBase.cs" />
-    <Compile Include="ViewModel\Command\PomodoroActionCommand.cs" />
-    <Compile Include="ViewModel\Command\SettingSaveCommand.cs" />
-    <Compile Include="ViewModel\EndPomodoroVM.cs" />
-    <Compile Include="ViewModel\Base\ViewModelBase .cs" />
-    <Compile Include="ViewModel\SettingsVM.cs" />
-    <Compile Include="View\ModeToEndPomodoroMsg.cs" />
-    <Compile Include="View\EndPomodoroWindow.xaml.cs">
+    <Compile Include="Presentaion\ViewModel\Command\PomodoroActionCommand.cs" />
+    <Compile Include="Presentaion\ViewModel\Command\SettingSaveCommand.cs" />
+    <Compile Include="Presentaion\ViewModel\EndPomodoroVM.cs" />
+    <Compile Include="Presentaion\ViewModel\Base\ViewModelBase .cs" />
+    <Compile Include="Presentaion\ViewModel\SettingsVM.cs" />
+    <Compile Include="Presentaion\View\ModeToEndPomodoroMsg.cs" />
+    <Compile Include="Presentaion\View\EndPomodoroWindow.xaml.cs">
       <DependentUpon>EndPomodoroWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NotifyIconWrapper.cs">
+    <Compile Include="Presentaion\View\NotifyIconWrapper.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="View\NotifyIconWrapper.Designer.cs">
+    <Compile Include="Presentaion\View\NotifyIconWrapper.Designer.cs">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\SettingsWindow.xaml.cs">
+    <Compile Include="Presentaion\View\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -127,7 +127,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\NotifyIconWrapper.resx">
+    <EmbeddedResource Include="Presentaion\View\NotifyIconWrapper.resx">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -142,15 +142,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\EndPomodoroWindow.xaml">
+    <Page Include="Presentaion\View\EndPomodoroWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SettingsWindow.xaml">
+    <Page Include="Presentaion\View\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Style\StyleDictionary.xaml">
+    <Page Include="Presentaion\View\Style\StyleDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
