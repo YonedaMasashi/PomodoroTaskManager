@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PomodoroTaskManager.ViewModel.Command {
+namespace PomodoroTaskManager.Presentation.ViewModel.Command {
     public class SettingSaveCommand : ICommand {
 
         private readonly TimeInterval _timeInterval;

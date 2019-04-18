@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PomodoroTaskManager.ViewModel.Base;
+using PomodoroTaskManager.Presentation.ViewModel.Base;
 using PomodoroTaskManager.Model.Timer;
-using PomodoroTaskManager.ViewModel.Command;
+using PomodoroTaskManager.Presentation.ViewModel.Command;
 
-namespace PomodoroTaskManager.ViewModel {
+namespace PomodoroTaskManager.Presentation.ViewModel {
     public class SettingsVM : ViewModelBase {
 
         TimeInterval _timeInterval;

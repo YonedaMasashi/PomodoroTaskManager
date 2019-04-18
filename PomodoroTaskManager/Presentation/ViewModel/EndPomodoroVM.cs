@@ -1,7 +1,7 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
 using PomodoroTaskManager.Model.Timer;
-using PomodoroTaskManager.ViewModel.Base;
-using PomodoroTaskManager.ViewModel.Command;
+using PomodoroTaskManager.Presentation.ViewModel.Base;
+using PomodoroTaskManager.Presentation.ViewModel.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PomodoroTaskManager.ViewModel {
+namespace PomodoroTaskManager.Presentation.ViewModel {
 
     public class EndPomodoroVM : ViewModelBase {
 

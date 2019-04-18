@@ -1,5 +1,4 @@
-﻿namespace PomodoroTaskManager.View
-{
+﻿namespace PomodoroTaskManager.Presentation.View {
     partial class NotifyIconWrapper
     {
         /// <summary>
@@ -40,6 +39,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem_Settings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_TaskEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             // 
             // notifyIcon1
@@ -59,60 +59,67 @@
             this.toolStripMenuItem_Break,
             this.toolStripMenuItem_LongBreak,
             this.toolStripSeparator2,
+            this.toolStripMenuItem_TaskEdit,
             this.toolStripMenuItem_Settings,
             this.toolStripMenuItem_Exit});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 244);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(275, 282);
             // 
             // toolStripMenuItem_TimeText
             // 
             this.toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_TimeText.Image")));
             this.toolStripMenuItem_TimeText.Name = "toolStripMenuItem_TimeText";
-            this.toolStripMenuItem_TimeText.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_TimeText.Size = new System.Drawing.Size(274, 38);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
             // 
             // toolStripMenuItem_Start
             // 
             this.toolStripMenuItem_Start.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_Start.Image")));
             this.toolStripMenuItem_Start.Name = "toolStripMenuItem_Start";
-            this.toolStripMenuItem_Start.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_Start.Size = new System.Drawing.Size(274, 38);
             this.toolStripMenuItem_Start.Text = "Start Pomodoro";
             // 
             // toolStripMenuItem_Break
             // 
             this.toolStripMenuItem_Break.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_Break.Image")));
             this.toolStripMenuItem_Break.Name = "toolStripMenuItem_Break";
-            this.toolStripMenuItem_Break.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_Break.Size = new System.Drawing.Size(274, 38);
             this.toolStripMenuItem_Break.Text = "Break";
             // 
             // toolStripMenuItem_LongBreak
             // 
             this.toolStripMenuItem_LongBreak.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_LongBreak.Image")));
             this.toolStripMenuItem_LongBreak.Name = "toolStripMenuItem_LongBreak";
-            this.toolStripMenuItem_LongBreak.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_LongBreak.Size = new System.Drawing.Size(274, 38);
             this.toolStripMenuItem_LongBreak.Text = "Long Break";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(271, 6);
             // 
             // toolStripMenuItem_Settings
             // 
             this.toolStripMenuItem_Settings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_Settings.Image")));
             this.toolStripMenuItem_Settings.Name = "toolStripMenuItem_Settings";
-            this.toolStripMenuItem_Settings.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_Settings.Size = new System.Drawing.Size(274, 38);
             this.toolStripMenuItem_Settings.Text = "Settings...";
             // 
             // toolStripMenuItem_Exit
             // 
             this.toolStripMenuItem_Exit.Name = "toolStripMenuItem_Exit";
-            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(173, 38);
+            this.toolStripMenuItem_Exit.Size = new System.Drawing.Size(274, 38);
             this.toolStripMenuItem_Exit.Text = "Close";
+            // 
+            // toolStripMenuItem_TaskEdit
+            // 
+            this.toolStripMenuItem_TaskEdit.Name = "toolStripMenuItem_TaskEdit";
+            this.toolStripMenuItem_TaskEdit.Size = new System.Drawing.Size(274, 38);
+            this.toolStripMenuItem_TaskEdit.Text = "Task Edit";
             this.contextMenuStrip1.ResumeLayout(false);
 
         }
@@ -129,5 +136,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_LongBreak;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Settings;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_TaskEdit;
     }
 }

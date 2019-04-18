@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PomodoroTaskManager.ViewModel.Base
+namespace PomodoroTaskManager.Presentation.ViewModel.Base
 {
     public abstract class ViewModelBase : INotifyPropertyChanged, IDataErrorInfo
     {

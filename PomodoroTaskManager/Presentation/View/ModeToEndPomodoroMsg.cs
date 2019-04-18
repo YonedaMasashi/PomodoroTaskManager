@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace PomodoroTaskManager.View {
+namespace PomodoroTaskManager.Presentation.View {
 
     [ValueConversion(typeof(Em_Mode), typeof(string))]
     class ModeToEndPomodoroMsg : IValueConverter {

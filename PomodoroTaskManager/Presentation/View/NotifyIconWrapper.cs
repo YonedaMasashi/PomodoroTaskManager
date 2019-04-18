@@ -1,6 +1,7 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
 using PomodoroTaskManager.Model.Timer;
-using PomodoroTaskManager.ViewModel;
+using PomodoroTaskManager.Presentation.View.TaskList;
+using PomodoroTaskManager.Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace PomodoroTaskManager.View
-{
+namespace PomodoroTaskManager.Presentation.View {
     /// <summary>
     /// タスクトレイ通知アイコン
     /// </summary>
@@ -60,6 +60,7 @@ namespace PomodoroTaskManager.View
             this.toolStripMenuItem_Break.Click += this.toolStripMenuItem_Break_Click;
             this.toolStripMenuItem_LongBreak.Click += this.toolStripMenuItem_LongBreak_Click;
             this.toolStripMenuItem_Settings.Click += this.toolStripMenuItem_Settings_Click;
+            this.toolStripMenuItem_TaskEdit.Click += this.toolStripMenuItem_TaskEdit_Click;
 
             // TextBox の初期化
             toolStripMenuItem_TimeText.Text = "00:00";
@@ -173,6 +174,16 @@ namespace PomodoroTaskManager.View
 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyIconWrapper));
             toolStripMenuItem_TimeText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem_LongBreak.Image")));
+        }
+
+        /// <summary>
+        /// コンテキストメニュー "Task Edit" を選択したとき呼ばれます。
+        /// </summary>
+        /// <param name="sender">呼び出し元オブジェクト</param>
+        /// <param name="e">イベントデータ</param>
+        private void toolStripMenuItem_TaskEdit_Click(object sender, EventArgs e) {
+            var taskListWindow = new TaskListWindow();
+            taskListWindow.ShowDialog();
         }
 
         /// <summary>

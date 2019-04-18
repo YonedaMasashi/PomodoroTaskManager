@@ -52,6 +52,12 @@
     <ApplicationIcon>TaskTray.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MicrosoftExpressionInteractions.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
@@ -86,30 +92,33 @@
     <Compile Include="Model\Timer\PomodoroTimer.cs" />
     <Compile Include="Model\Timer\TimeInterval.cs" />
     <Compile Include="Model\Base\BindableBase.cs" />
-    <Compile Include="Presentaion\ViewModel\Command\PomodoroActionCommand.cs" />
-    <Compile Include="Presentaion\ViewModel\Command\SettingSaveCommand.cs" />
-    <Compile Include="Presentaion\ViewModel\EndPomodoroVM.cs" />
-    <Compile Include="Presentaion\ViewModel\Base\ViewModelBase .cs" />
-    <Compile Include="Presentaion\ViewModel\SettingsVM.cs" />
-    <Compile Include="Presentaion\View\ModeToEndPomodoroMsg.cs" />
-    <Compile Include="Presentaion\View\EndPomodoroWindow.xaml.cs">
+    <Compile Include="Presentation\ViewModel\Command\PomodoroActionCommand.cs" />
+    <Compile Include="Presentation\ViewModel\Command\SettingSaveCommand.cs" />
+    <Compile Include="Presentation\ViewModel\EndPomodoroVM.cs" />
+    <Compile Include="Presentation\ViewModel\Base\ViewModelBase .cs" />
+    <Compile Include="Presentation\ViewModel\SettingsVM.cs" />
+    <Compile Include="Presentation\View\ModeToEndPomodoroMsg.cs" />
+    <Compile Include="Presentation\View\EndPomodoroWindow.xaml.cs">
       <DependentUpon>EndPomodoroWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentaion\View\NotifyIconWrapper.cs">
+    <Compile Include="Presentation\View\NotifyIconWrapper.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Presentaion\View\NotifyIconWrapper.Designer.cs">
+    <Compile Include="Presentation\View\NotifyIconWrapper.Designer.cs">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Presentaion\View\SettingsWindow.xaml.cs">
+    <Compile Include="Presentation\View\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentation\View\TaskList\TaskListWindow.xaml.cs">
+      <DependentUpon>TaskListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -127,7 +136,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentaion\View\NotifyIconWrapper.resx">
+    <EmbeddedResource Include="Presentation\View\NotifyIconWrapper.resx">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -142,15 +151,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Presentaion\View\EndPomodoroWindow.xaml">
+    <Page Include="Presentation\View\EndPomodoroWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentaion\View\SettingsWindow.xaml">
+    <Page Include="Presentation\View\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentaion\View\Style\StyleDictionary.xaml">
+    <Page Include="Presentation\View\Style\StyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\View\TaskList\TaskListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

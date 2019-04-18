@@ -1,4 +1,4 @@
-﻿using PomodoroTaskManager.ViewModel;
+﻿using PomodoroTaskManager.Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PomodoroTaskManager.View
-{
+namespace PomodoroTaskManager.Presentation.View {
     /// <summary>
-    /// EndPomodoroWindow.xaml の相互作用ロジック
+    /// SettingsWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class EndPomodoroWindow : Window
+    public partial class SettingsWindow : Window
     {
-
-        public EndPomodoroWindow(EndPomodoroVM endPomodoroVM)
+        public SettingsWindow(SettingsVM settingVM)
         {
             InitializeComponent();
-
-            PomodoroEndMessage.DataContext = endPomodoroVM;
+            IntervalData.DataContext = settingVM;
         }
+
     }
 }
