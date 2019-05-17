@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PomodoroTaskManager.Presentation.ViewModel.Base;
-using PomodoroTaskManager.Model.Timer;
+﻿using PomodoroTaskManager.Model.Timer;
 using PomodoroTaskManager.Presentation.ViewModel.Command;
+
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace PomodoroTaskManager.Presentation.ViewModel {
     public class SettingsVM : ViewModelBase {
 
         TimeInterval _timeInterval;
 
-        public SettingsVM(TimeInterval timeInterval) {
+        public SettingsVM(TimeInterval timeInterval)
+            : base(Messenger.Default) {
+
             _timeInterval = timeInterval;
             PushedSettingSaveCommand = new SettingSaveCommand(_timeInterval);
         }

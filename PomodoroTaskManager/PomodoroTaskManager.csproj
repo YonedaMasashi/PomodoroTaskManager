@@ -52,6 +52,18 @@
     <ApplicationIcon>TaskTray.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -67,8 +79,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity">
-      <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\PrivateAssemblies\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,27 +105,32 @@
     <Compile Include="Model\Timer\TimeInterval.cs" />
     <Compile Include="Model\Base\BindableBase.cs" />
     <Compile Include="Presentation\ViewModel\Command\PomodoroActionCommand.cs" />
+    <Compile Include="Presentation\ViewModel\Command\PomodoroMemoSaveCommand.cs" />
     <Compile Include="Presentation\ViewModel\Command\SettingSaveCommand.cs" />
     <Compile Include="Presentation\ViewModel\EndPomodoroVM.cs" />
-    <Compile Include="Presentation\ViewModel\Base\ViewModelBase .cs" />
     <Compile Include="Presentation\ViewModel\SettingsVM.cs" />
-    <Compile Include="Presentation\View\ModeToEndPomodoroMsg.cs" />
-    <Compile Include="Presentation\View\EndPomodoroWindow.xaml.cs">
+    <Compile Include="Presentation\View\Pomodoro\ModeToEndPomodoroMsg.cs" />
+    <Compile Include="Presentation\View\Pomodoro\EndPomodoroWindow.xaml.cs">
       <DependentUpon>EndPomodoroWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\View\NotifyIconWrapper.cs">
+    <Compile Include="Presentation\View\Pomodoro\StartPomodoroWindow.xaml.cs">
+      <DependentUpon>StartPomodoroWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\View\TaskTray\NotifyIconWrapper.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Presentation\View\NotifyIconWrapper.Designer.cs">
+    <Compile Include="Presentation\View\TaskTray\NotifyIconWrapper.Designer.cs">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Presentation\View\SettingsWindow.xaml.cs">
+    <Compile Include="Presentation\View\Setting\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\ViewModel\Base\MainViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\Base\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentation\View\TaskList\TaskListWindow.xaml.cs">
@@ -136,7 +153,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\View\NotifyIconWrapper.resx">
+    <EmbeddedResource Include="Presentation\View\TaskTray\NotifyIconWrapper.resx">
       <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -151,11 +168,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Presentation\View\EndPomodoroWindow.xaml">
+    <Page Include="Presentation\View\Pomodoro\EndPomodoroWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\View\SettingsWindow.xaml">
+    <Page Include="Presentation\View\Pomodoro\StartPomodoroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\View\Setting\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

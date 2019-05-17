@@ -1,6 +1,8 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
 using PomodoroTaskManager.Model.Timer;
 using PomodoroTaskManager.Presentation.View.TaskList;
+using PomodoroTaskManager.Presentation.View.Setting;
+using PomodoroTaskManager.Presentation.View.Pomodoro;
 using PomodoroTaskManager.Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace PomodoroTaskManager.Presentation.View {
+namespace PomodoroTaskManager.Presentation.View.TaskTray {
     /// <summary>
     /// タスクトレイ通知アイコン
     /// </summary>

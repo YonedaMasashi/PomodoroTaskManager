@@ -1,4 +1,4 @@
-﻿using PomodoroTaskManager.Presentation.View;
+﻿using PomodoroTaskManager.Presentation.View.TaskTray;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

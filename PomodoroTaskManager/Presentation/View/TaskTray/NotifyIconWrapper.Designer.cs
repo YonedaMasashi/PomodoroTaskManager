@@ -1,4 +1,4 @@
-﻿namespace PomodoroTaskManager.Presentation.View {
+﻿namespace PomodoroTaskManager.Presentation.View.TaskTray {
     partial class NotifyIconWrapper
     {
         /// <summary>

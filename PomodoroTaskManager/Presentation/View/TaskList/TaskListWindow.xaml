@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PomodoroTaskManager.Presentation.View.TaskList"
         mc:Ignorable="d"
+        Icon="../../../TaskTray.ico"
         Title="Task List" Height="500" Width="800">
     <Grid Margin="10,10,10,10">
        <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
 
                 <!-- 0行目 -->
                 <Label Content="Task Name:" Grid.Column="0" Grid.Row="0"/>
-                <TextBox x:Name="InputTaskNameText" Width="690" Height="30" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="InputTaskNameText" Width="680" Height="30" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
 
                 <!-- 1行目 空行 -->
 

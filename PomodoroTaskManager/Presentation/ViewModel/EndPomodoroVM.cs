@@ -1,14 +1,10 @@
 ﻿using PomodoroTaskManager.DataTypeDef.Enum;
 using PomodoroTaskManager.Model.Timer;
-using PomodoroTaskManager.Presentation.ViewModel.Base;
 using PomodoroTaskManager.Presentation.ViewModel.Command;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace PomodoroTaskManager.Presentation.ViewModel {
 
@@ -34,7 +30,8 @@ namespace PomodoroTaskManager.Presentation.ViewModel {
         public PomodoroActionCommand PushedPomodoroActionButtonCommand { get; private set; }
         #endregion
 
-        public EndPomodoroVM(PomodoroTimer pomodoroTimer) {
+        public EndPomodoroVM(PomodoroTimer pomodoroTimer)
+            : base(Messenger.Default) {
             _emMode = Em_Mode.Stop;
             _pomodoroTimer = pomodoroTimer;
             _pomodoroTimer.PropertyChanged += EmMode_PropertyChanged;
