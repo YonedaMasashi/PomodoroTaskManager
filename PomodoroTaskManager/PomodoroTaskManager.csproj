@@ -107,8 +107,11 @@
     <Compile Include="Presentation\ViewModel\Command\PomodoroActionCommand.cs" />
     <Compile Include="Presentation\ViewModel\Command\PomodoroMemoSaveCommand.cs" />
     <Compile Include="Presentation\ViewModel\Command\SettingSaveCommand.cs" />
+    <Compile Include="Presentation\ViewModel\Command\TaskListEditCommand.cs" />
     <Compile Include="Presentation\ViewModel\EndPomodoroVM.cs" />
     <Compile Include="Presentation\ViewModel\SettingsVM.cs" />
+    <Compile Include="Presentation\ViewModel\TaskListVM.cs" />
+    <Compile Include="Presentation\ViewModel\TaskVM.cs" />
     <Compile Include="Presentation\View\Pomodoro\ModeToEndPomodoroMsg.cs" />
     <Compile Include="Presentation\View\Pomodoro\EndPomodoroWindow.xaml.cs">
       <DependentUpon>EndPomodoroWindow.xaml</DependentUpon>

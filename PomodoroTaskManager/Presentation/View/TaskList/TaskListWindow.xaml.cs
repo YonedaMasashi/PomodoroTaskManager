@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PomodoroTaskManager.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace PomodoroTaskManager.Presentation.View.TaskList
     /// </summary>
     public partial class TaskListWindow : Window
     {
-        public TaskListWindow()
+        private List<string> _CategoryComboBoxList = new List<string>();
+
+        public TaskListWindow(TaskListVM taskListVM)
         {
             InitializeComponent();
+
+            InputCategoryComboBox.ItemsSource = _CategoryComboBoxList;
+            InputTaskData.DataContext = taskListVM;
+            DG_TaskList.DataContext = taskListVM.TaskList;
         }
     }
 }

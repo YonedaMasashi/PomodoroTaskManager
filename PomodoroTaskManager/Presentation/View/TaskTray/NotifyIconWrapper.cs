@@ -36,6 +36,7 @@ namespace PomodoroTaskManager.Presentation.View.TaskTray {
         // View Model
         SettingsVM _settingsVM;
         EndPomodoroVM _endPomodoroVM;
+        TaskListVM _taskListVM;
 
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace PomodoroTaskManager.Presentation.View.TaskTray {
             // Window の初期化
             _settingsVM = new SettingsVM(_timeInterval);
             _endPomodoroVM = new EndPomodoroVM(_pomodoroTime);
+            _taskListVM = new TaskListVM();
 
             // コンテキストメニューのイベントを設定
             this.toolStripMenuItem_Exit.Click += this.toolStripMenuItem_Exit_Click;
@@ -184,7 +186,7 @@ namespace PomodoroTaskManager.Presentation.View.TaskTray {
         /// <param name="sender">呼び出し元オブジェクト</param>
         /// <param name="e">イベントデータ</param>
         private void toolStripMenuItem_TaskEdit_Click(object sender, EventArgs e) {
-            var taskListWindow = new TaskListWindow();
+            var taskListWindow = new TaskListWindow(_taskListVM);
             taskListWindow.ShowDialog();
         }
 

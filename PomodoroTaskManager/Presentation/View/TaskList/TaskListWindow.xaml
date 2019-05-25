@@ -20,7 +20,8 @@
             CornerRadius="8"
             BorderBrush="BlueViolet">
 
-            <Grid Grid.Row="0" VerticalAlignment="Center">
+            <Grid x:Name="InputTaskData"
+                Grid.Row="0" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition/>
@@ -35,27 +36,29 @@
 
                 <!-- 0行目 -->
                 <Label Content="Task Name:" Grid.Column="0" Grid.Row="0"/>
-                <TextBox x:Name="InputTaskNameText" Width="680" Height="30" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="InputTaskNameText" Text="{Binding TaskName}"
+                         Width="680" Height="30" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
 
                 <!-- 1行目 空行 -->
 
                 <!-- 2行目 -->
                 <Label Content="Category:" Grid.Column="0" Grid.Row="2"/>
                 <ComboBox x:Name="InputCategoryComboBox" Width="200" Height="30" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"
-                          IsEditable="true" IsReadOnly="False"/>
+                          Text="{Binding CategoryName}"
+                          IsEditable="true" IsReadOnly="False" />
 
                 <!-- 3行目 空行 -->
 
                 <!-- 4行目 -->
-                <Button x:Name="Add" Content="Add" Height="30" Width="80" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" />
-
+                <Button x:Name="Add" Content="Add" Height="30" Width="80" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left"
+                        Command="{Binding PushedTaskListEditCommand}" CommandParameter="{Binding}" />
             </Grid>
         </Border>
 
         <!-- 1行目 空行-->
 
         <!-- 2行目 タスクリスト -->
-        <DataGrid Grid.Row="2">
+        <DataGrid Grid.Row="2" x:Name="DG_TaskList">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="50"/>
                 <DataGridComboBoxColumn Header="Category" Width="100"/>
