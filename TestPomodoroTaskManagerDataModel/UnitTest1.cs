@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PomodoroTaskManagerDataModel.DataBase.SQLite;
+using PomodoroTaskManagerDataModel.DataBase;
 using PomodoroTaskManagerDataModel.Entity;
 
 namespace TestPomodoroTaskManagerDataModel
@@ -11,10 +13,22 @@ namespace TestPomodoroTaskManagerDataModel
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        const string baseTestDbPath = "../../テスト用_PomodoroTasks.db";
+
+        private void CopyTestDB(string testDBPath)
         {
-            using (SqliteConnectWrapper wrapper = new SqliteConnectWrapper("PomodoroTasks.db"))
+            if (File.Exists(testDBPath) == true)
+            {
+                File.Delete(testDBPath);
+            }
+            File.Copy(baseTestDbPath, testDBPath);
+        }
+
+        [TestMethod]
+        public void TestSelect()
+        {
+            DBConnectionWrapper wrapper = null;
+            using (wrapper = new SqliteConnectWrapper("PomodoroTasks.db"))
             {
 
                 // One to One
@@ -82,5 +96,49 @@ namespace TestPomodoroTaskManagerDataModel
                 wrapper.Close();
             }
         }
+
+
+        [TestMethod]
+        public void TestInsert()
+        {
+            string testDbPath = "./InsertPomodoro.db";
+            CopyTestDB(testDbPath);
+
+            using (SqliteConnectWrapper wrapper = new SqliteConnectWrapper(testDbPath))
+            {
+                using (var tran = wrapper.CreateTransaction())
+                {
+                    var category = new Categories();
+                    category.CategoryName = "TestInsert1";
+                    category.Description = "TestInsert1";
+
+                    try
+                    {
+
+                        string sql = "insert into Categories(CategoryName, Description) values(@CategoryName, @Description)";
+                        wrapper.Execute(sql, category, tran);
+
+                        tran.Commit();
+                        
+                    } catch (Exception e)
+                    {
+                        Debug.Write(e.Message);
+                        tran.Rollback();
+                    }
+
+                    // 確認
+                    string query = "";
+                    query += "SELECT * FROM Categories;";
+
+                    var result = wrapper.Query<Categories>(query);
+
+                    var findElem = result.Where(elem => elem.CategoryName == category.CategoryName).Single();
+
+                    Assert.AreEqual(category.CategoryName, findElem.CategoryName);
+                    Assert.AreEqual(category.Description, findElem.Description);
+                }
+            }
+        }
     }
 }
+

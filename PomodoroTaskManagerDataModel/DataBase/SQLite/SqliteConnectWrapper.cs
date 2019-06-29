@@ -31,8 +31,7 @@ namespace PomodoroTaskManagerDataModel.DataBase.SQLite
             _DbConnection.Close();
         }
 
-        public DbTransaction CreateTransaction()
-        {
+        public DbTransaction CreateTransaction() {
             return _DbConnection.BeginTransaction();
         }
 
@@ -44,6 +43,11 @@ namespace PomodoroTaskManagerDataModel.DataBase.SQLite
             (string query, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null)
         {
             return _DbConnection.Query<TFirst, TSecond, TReturn>(query, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public int Execute(string sql, object param, DbTransaction transaction)
+        {
+            return _DbConnection.Execute(sql, param, transaction);
         }
     }
 }
