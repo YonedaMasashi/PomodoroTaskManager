@@ -51,9 +51,6 @@
   <ItemGroup>
     <Compile Include="DataBase\DBConnectionWrapper.cs" />
     <Compile Include="DataBase\SQLite\SqliteConnectWrapper.cs" />
-    <Compile Include="Entity\Categories.cs" />
-    <Compile Include="Entity\Pomodoros.cs" />
-    <Compile Include="Entity\Tasks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

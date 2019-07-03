@@ -101,6 +101,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataTypeDef\Enum\Em_Mode.cs" />
+    <Compile Include="Model\Entity\Categories.cs" />
+    <Compile Include="Model\Entity\Pomodoros.cs" />
+    <Compile Include="Model\Entity\Tasks.cs" />
+    <Compile Include="Model\Repository\TaskRepository.cs" />
     <Compile Include="Model\Timer\PomodoroTimer.cs" />
     <Compile Include="Model\Timer\TimeInterval.cs" />
     <Compile Include="Model\Base\BindableBase.cs" />
@@ -134,6 +138,7 @@
     </Compile>
     <Compile Include="Presentation\ViewModel\Base\MainViewModel.cs" />
     <Compile Include="Presentation\ViewModel\Base\ViewModelLocator.cs" />
+    <Compile Include="Service\CreateTaskService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentation\View\TaskList\TaskListWindow.xaml.cs">
@@ -209,6 +214,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PomodoroTaskManagerDataModel\PomodoroTaskManagerDataModel.csproj">
+      <Project>{48320376-40f1-45ca-be84-b7162e82fd34}</Project>
+      <Name>PomodoroTaskManagerDataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

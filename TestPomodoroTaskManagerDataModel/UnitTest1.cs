@@ -6,7 +6,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PomodoroTaskManagerDataModel.DataBase.SQLite;
 using PomodoroTaskManagerDataModel.DataBase;
-using PomodoroTaskManagerDataModel.Entity;
+using PomodoroTaskManager.Model.Entity;
 
 namespace TestPomodoroTaskManagerDataModel
 {

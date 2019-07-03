@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PomodoroTaskManagerDataModel.Entity
+namespace PomodoroTaskManager.Model.Entity
 {
     public class Categories
     {

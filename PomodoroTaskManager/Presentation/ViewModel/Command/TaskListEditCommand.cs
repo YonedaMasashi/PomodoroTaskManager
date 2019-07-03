@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PomodoroTaskManager.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace PomodoroTaskManager.Presentation.ViewModel.Command
         public void Execute(object parameter)
         {
             var taskListVM = (TaskListVM)parameter;
+
+            CreateTaskService service = new CreateTaskService();
+            service.AddTask(taskListVM.TaskName, taskListVM.CategoryName);
         }
     }
 }
