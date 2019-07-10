@@ -14,6 +14,7 @@ namespace PomodoroTaskManagerDataModel.DataBase
 
         DbTransaction CreateTransaction();
         IEnumerable<T> Query<T>(string query);
+        
 
         IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>
             (string query, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
